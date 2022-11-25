@@ -1,8 +1,9 @@
 export const guessType = (weights, points)=>{
-
+    //console.log(points);
     //Ponderação
     let sum = points.x * weights.x + points.y * weights.y;
     //Função de ponderação
+    //console.log(sum);
     return sum > 0 ? 1 : -1;
 }
 

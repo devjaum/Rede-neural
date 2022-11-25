@@ -5,13 +5,15 @@ import { getType, generatePoint } from "./DataGenerator";
 import { guessType,generateRandomWeights, train } from "./Neuron";
 export const Chart = (data) =>{
     const [weights, setWeights] = useState(generateRandomWeights)
-
+    const [trainingIteration, settrainingIteration] = useState(100);
     const charPointClassifier = (point) => {
         return guessType(weights, point);
        // return getType(point)
     }
-    const trainingIteration = 10000;
+    
     const onTrainClick = () => {
+        let input = document.getElementById("input");
+        if(input.value != "") settrainingIteration(input.value);
         let newWeights = weights;
         for (let i = 0; i < trainingIteration; i++) {
             let newPoint = generatePoint();
@@ -28,7 +30,7 @@ export const Chart = (data) =>{
         <>
             <ResponsiveContainer width="100%" height="100%">
                 <ScatterChart margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-                    <ReferenceLine segment={referenceLineData} stroke="yellow" strokeWidth={2} alwaysShow={true}/>
+                    <ReferenceLine segment={referenceLineData} stroke="yellow" strokeWidth={2} ifOverflow="extendDomain"/>
                     <CartesianGrid></CartesianGrid>
                     <XAxis type="number" dataKey="x" name="x"/>
                     <YAxis type="number" dataKey="y" name="y"/>
@@ -38,6 +40,9 @@ export const Chart = (data) =>{
                 </ScatterChart>
             </ResponsiveContainer>
             <p>Weights: X {weights.x}, Y {weights.y}</p>
+            <div> 
+                <input type={"number"} placeholder={trainingIteration} id="input"/>
+            </div>
             <button onClick={onTrainClick}>
                 Train
             </button>
