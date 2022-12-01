@@ -1,11 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
 import App from './App'
 import Index from './TicTacToe/index'
+import { render } from 'react-dom'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Index />
-  </React.StrictMode>
+document.getElementById('root').render(
+    <React.StrictMode>
+      <Index />
+    </React.StrictMode>
 )
