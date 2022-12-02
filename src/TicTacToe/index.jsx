@@ -15,13 +15,8 @@ function Index(){
   function jogar(i, j){
     if (tabuleiro[i][j] === "") {
       let novoTabuleiro = [...tabuleiro];
-      novoTabuleiro[i][j] = jogador;
+      novoTabuleiro[i][j] = 'x';
       setTabuleiro(novoTabuleiro);
-      if (jogador === "x") {
-        setJogador("o");
-      } else {
-        setJogador("x");
-      }
     }
     //verificar a jogada da IA
     //decision_Tree(tabuleiro)
@@ -35,13 +30,8 @@ function Index(){
     //jogar na IA
     if (tabuleiro[row][col] === "") {
         let novoTabuleiro = [...tabuleiro];
-        novoTabuleiro[row][col] = jogador;
+        novoTabuleiro[row][col] = "o";
         setTabuleiro(novoTabuleiro);
-        if (jogador === "x") {
-          setJogador("o");
-        } else {
-          setJogador("x");
-        }
       }
       
 }
@@ -179,7 +169,7 @@ function Index(){
           gridArea: "1/1/2/2",
         }}
         id="span1"
-        onClick={() => jogar(0, 0)}
+        onClick={() => {jogar(0, 0);jogarIA()}}
       >
         {tabuleiro[0][0]}
       </span>
@@ -190,14 +180,14 @@ function Index(){
           gridArea: "1/2/2/3",
         }}
         id="span2"
-        onClick={() => jogar(0, 1)}
+        onClick={() => {jogar(0, 1);jogarIA()}}
       >
         {tabuleiro[0][1]}
       </span>
       <span
         style={{ borderBottom: "1px solid white", gridArea: "1/3/2/4" }}
         id="span3"
-        onClick={() => jogar(0, 2)}
+        onClick={() => {jogar(0, 2);jogarIA()}}
       >
         {tabuleiro[0][2]}
       </span>
@@ -208,7 +198,7 @@ function Index(){
           gridArea: "2/1/3/2",
         }}
         id="span4"
-        onClick={() => jogar(1, 0)}
+        onClick={() => {jogar(1, 0);jogarIA()}}
       >
         {tabuleiro[1][0]}
       </span>
@@ -219,35 +209,35 @@ function Index(){
           gridArea: "2/2/3/3",
         }}
         id="span5"
-        onClick={() => jogar(1, 1)}
+        onClick={() => {jogar(1, 1);jogarIA()}}
       >
         {tabuleiro[1][1]}
       </span>
       <span
         style={{ borderBottom: "1px solid white", gridArea: "2/3/3/4" }}
         id="span6"
-        onClick={() => jogar(1, 2)}
+        onClick={() => {jogar(1, 2);jogarIA()}}
       >
         {tabuleiro[1][2]}
       </span>
       <span
         style={{ borderRight: "1px solid white", gridArea: "3/1/4/2" }}
         id="span7"
-        onClick={() => jogar(2, 0)}
+        onClick={() => {jogar(2, 0);jogarIA()}}
       >
         {tabuleiro[2][0]}
       </span>
       <span
         style={{ borderRight: "1px solid white", gridArea: "3/2/4/3" }}
         id="span8"
-        onClick={() => jogar(2, 1)}
+        onClick={() => {jogar(2, 1);jogarIA()}}
       >
         {tabuleiro[2][1]}
       </span>
       <span
         style={{ gridArea: "3/3/4/4" }}
         id="span9"
-        onClick={() => jogar(2, 2)}
+        onClick={() => {jogar(2, 2);jogarIA()}}
       >
         {tabuleiro[2][2]}
       </span>
@@ -255,7 +245,6 @@ function Index(){
     <button id="resetar" onClick={resetar}>
         Resetar
     </button>
-    <button id="Ia" onClick={()=>jogarIA()}>Jogar IA</button>
   </div>
     )
   }
