@@ -1,6 +1,6 @@
 import { useState, React } from 'react'
 import '../App.css'
-import decision_Tree from './decision_Tree';
+import {buscarMovimento} from './arvore_Busca';
 let status = "Jogar";
 function Index(){
   //Criar uma arvore de decisões para o jogo da velha
@@ -10,7 +10,6 @@ function Index(){
     ["", "", ""],
     ["", "", ""],
   ]);
-  const [jogador, setJogador] = useState("x"); 
   //função para jogar
   function jogar(i, j){
     if (tabuleiro[i][j] === "") {
@@ -20,15 +19,16 @@ function Index(){
       if(!VerificarEmpate()) jogarIA();
       else status="Empate";
     }
+    
     //verificar a jogada da IA
-    //decision_Tree(tabuleiro)
+    //buscarMovimento(tabuleiro)
   }
   //Função para IA jogar
   function jogarIA(){
-    let IA = decision_Tree(tabuleiro);
+    let IA = buscarMovimento(tabuleiro);
     //Irá retornar a ROW e COL
-    let row = IA.row;
-    let col = IA.col;
+    let row = IA.linha;
+    let col = IA.coluna;
     //jogar na IA
     if (tabuleiro[row][col] === "") {
         let novoTabuleiro = [...tabuleiro];
@@ -95,7 +95,7 @@ function Index(){
         }
       }
     }
-    console.log(cont);
+    //console.log(cont);
     if(cont != 0) return false;
     return true;
   }
@@ -205,7 +205,9 @@ function Index(){
           gridArea: "1/1/2/2",
         }}
         id="span1"
-        onClick={() => {jogar(0, 0)}}
+        onClick={() => {
+          jogar(0, 0);
+        }}
       >
         {tabuleiro[0][0]}
       </span>
