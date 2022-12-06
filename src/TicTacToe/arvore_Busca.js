@@ -10,7 +10,6 @@ const movimentos = (tabuleiro) =>{
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             if(tabuleiro[i][j] == "") return true;
-            
         }
     }
     return false;
@@ -75,22 +74,22 @@ const arvore = (tabuleiro, profundidade, max) => {
             }
         }
         return melhor;
-        //Pegando o pior movimento
+        //Pegando o pior movimentoAimage.png
     }else{
-        let melhor = +1000;
+        let pior = +1000;
         //Verificando todas as posições e fazendo o movimento se estiver vazio
         for(let i = 0; i < 3; i++){
             for(let j = 0; j < 3; j++){
                 if(tabuleiro[i][j] === ""){
                     tabuleiro[i][j] = jogador;
                     //Pegar o valor min através da recursividade
-                    melhor = Math.min(melhor, arvore(tabuleiro,profundidade+1,!max));
+                    pior = Math.min(pior, arvore(tabuleiro,profundidade+1,!max));
                     //Desfazer o movimento
                     tabuleiro[i][j] = "";
                 }
             }
         }
-        return melhor;
+        return pior;
     }
 }
 //Buscando o melhor movimento para o CPU 

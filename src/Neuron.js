@@ -1,12 +1,10 @@
 export const guessType = (weights, points)=>{
-    //console.log(points);
-    //Ponderação
+    //Ponderação  
     let sum = points.x * weights.x + points.y * weights.y;
     //Função de ponderação
-    //console.log(sum);
     return sum > 0 ? 1 : -1;
 }
-
+//Criando o peso
 export const generateRandomWeights = ()=> {
     return{
         x: Math.random() * 2 - 1,
@@ -17,9 +15,11 @@ export const generateRandomWeights = ()=> {
 //Treinamento
 
 export const train = (weights, points, expectedType) => {
+    //Criando um palpite
     let guess = guessType(weights,points);
+    //Verificando se o palpite está correto
     let error = expectedType - guess; 
-
+    //Retornando 1 ou -1
     return{
         x: weights.x + error * points.x,
         y: weights.y + error * points.y
